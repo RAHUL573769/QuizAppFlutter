@@ -11,26 +11,39 @@ class Questions extends StatefulWidget {
 }
 
 class _QuestionsState extends State<Questions> {
+  var currentQuestionIndex = 0;
+  void answerQuestions() {
+    setState(() {
+      currentQuestionIndex++;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    final currentQuestions = questions[0];
+    final currentQuestions = questions[currentQuestionIndex];
     return SizedBox(
       width: double.infinity,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(currentQuestions.text),
-          const SizedBox(
-            height: 30,
-          ),
-          AnswerButton(answerText: currentQuestions.answers[0], onTap: () {}),
-          AnswerButton(answerText: currentQuestions.answers[1], onTap: () {}),
-          AnswerButton(answerText: currentQuestions.answers[2], onTap: () {}),
-          AnswerButton(answerText: currentQuestions.answers[3], onTap: () {}),
-          const SizedBox(
-            height: 30,
-          ),
-        ],
+      child: Container(
+        margin: EdgeInsets.all(40),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text(currentQuestions.text),
+            const SizedBox(
+              height: 30,
+            ),
+            ...currentQuestions.answers
+                // .getShuffledAnswers()
+                .map((answer) => AnswerButton(
+                      answerText: answer,
+                      onTap: answerQuestions,
+                    )),
+            const SizedBox(
+              height: 30,
+            ),
+          ],
+        ),
       ),
     );
   }

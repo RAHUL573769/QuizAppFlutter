@@ -17,27 +17,21 @@ class _QuestionsState extends State<Questions> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text("The Question is"),
-          SizedBox(
+          const Text("The Question is"),
+          const SizedBox(
             height: 30,
           ),
           AnswerButton(answerText: 'Answer 1', onTap: () {}),
-          Text("The Question is"),
-          SizedBox(
+          const Text("The Question is"),
+          const SizedBox(
             height: 30,
           ),
-          ElevatedButton(
-            onPressed: () {},
-            child: Text("Answer 3"),
-          ),
-          Text("The Question is"),
-          SizedBox(
+          AnswerButton(answerText: 'Answer 2', onTap: () {}),
+          const Text("The Question is"),
+          const SizedBox(
             height: 30,
           ),
-          ElevatedButton(
-            onPressed: () {},
-            child: Text("Answer 1"),
-          )
+          AnswerButton(answerText: 'Answer 3', onTap: () {}),
         ],
       ),
     );
